@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 自定义基础样式 */
+@layer base {
+    body {
+        @apply bg-bg-dark text-white font-sans;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* 移动端优化 */
+    html {
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+    }
+}
+
+/* 自定义组件样式 */
+@layer components {
+    .btn-primary {
+        @apply flex items-center gap-3 px-8 py-4 rounded-full font-black uppercase tracking-widest transition-all duration-300;
+        @apply bg-gradient-to-r from-accent-magenta via-accent-purple to-accent-cyan;
+        @apply hover:scale-110 active:scale-95;
+        @apply border-4 border-accent-yellow shadow-[4px_4px_0_#FFFFFF];
+    }
+
+    .btn-primary:disabled {
+        @apply bg-gray-600 opacity-50 cursor-wait hover:scale-100;
+    }
+
+    .card-primary {
+        @apply bg-bg-card/80 backdrop-blur-md border-2 md:border-4 border-accent-yellow rounded-2xl md:rounded-3xl p-4 md:p-6;
+        @apply shadow-[6px_6px_0_#7B2FFF] md:shadow-[12px_12px_0_#7B2FFF];
+    }
+
+    .card-result {
+        @apply bg-white text-bg-dark p-10 rounded-[3rem] border-8 border-accent-cyan;
+        @apply shadow-[16px_16px_0_#FF3AF2, 32px_32px_0_#7B2FFF];
+    }
+
+    .input-primary {
+        @apply w-full bg-transparent border-none text-lg md:text-2xl font-bold;
+        @apply placeholder:text-white/30 focus:ring-0 resize-none min-h-[120px] md:min-h-[150px] outline-none;
+    }
+
+    .tag-magenta {
+        @apply px-2 md:px-3 py-0.5 md:py-1 bg-accent-magenta text-[10px] md:text-xs font-black uppercase rounded-full;
+    }
+
+    .tag-cyan {
+        @apply px-2 md:px-3 py-0.5 md:py-1 bg-accent-cyan text-bg-dark text-[10px] md:text-xs font-black uppercase rounded-full;
+    }
+}
+
+/* 自定义工具类 */
+@layer utilities {
+    .text-shadow-multi {
+        text-shadow:
+            4px 4px 0px #7B2FFF,
+            8px 8px 0px #FF3AF2,
+            12px 12px 0px #00F5D4;
+    }
+
+    .gradient-text {
+        @apply bg-gradient-to-r from-accent-magenta via-accent-yellow to-accent-cyan bg-clip-text text-transparent;
+        background-size: 200% auto;
+        animation: gradient-shift 4s ease infinite;
+    }
+
+    .glow-effect {
+        @apply absolute -inset-1 md:-inset-2 bg-gradient-to-r from-accent-magenta to-accent-purple rounded-2xl md:rounded-3xl blur opacity-20 md:opacity-25;
+        @apply group-focus-within:opacity-50 md:group-focus-within:opacity-75 transition duration-500;
+    }
+
+    /* 移动端安全区域 */
+    .safe-area-bottom {
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+}
+
+/* 移动端滚动优化 */
+@media (max-width: 768px) {
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+}
