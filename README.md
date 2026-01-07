@@ -91,18 +91,18 @@ docker-compose up -d
 
 ```mermaid
 graph TD
-    User[用户 (Mobile/Desktop)] -->|HTTP/80| Nginx
-    Nginx -->|静态资源| Frontend[React SPA]
-    Nginx -->|API请求 /api/v1| Backend[FastAPI]
+    User["用户 (Mobile/Desktop)"] -->|HTTP/80| Nginx
+    Nginx -->|"静态资源"| Frontend[React SPA]
+    Nginx -->|"API请求 /api/v1"| Backend[FastAPI]
     
-    subgraph Container Environment
+    subgraph "Container Environment"
         Frontend
         Backend
-        DB[(PostgreSQL)]
+        DB[("PostgreSQL")]
     end
     
-    Backend -->|读写历史| DB
-    Backend -->|翻译请求| DeepSeek[DeepSeek API]
+    Backend -->|"读写历史"| DB
+    Backend -->|"翻译请求"| DeepSeek["DeepSeek API"]
 ```
 
 ---
